@@ -13,4 +13,4 @@ or one can include the order of marker as a parameter:
 
 rosrun socket_tranmerc tcp_client.py _order:=7
 
-The node can also be included in a launch file as seen in launch/example.launch
+The node can also be included in a launch file...

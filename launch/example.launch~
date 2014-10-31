@@ -1,0 +1,11 @@
+<launch>
+
+	<group ns="fmLib">
+		<node pkg="socket_tranmerc" type="tcp_client.py" name="serial_comm_left">
+			<param name="order" value="serial_comm_left_rx" />
+		</node>
+
+	</group>
+
+
+</launch>

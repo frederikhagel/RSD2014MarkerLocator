@@ -38,7 +38,6 @@ class TCPBridgeClient(asyncore.dispatcher):
               datalist = data.split(',')
               timestamp = datalist[2]
               for i in range( (len(datalist) - 3 )/3):
-                  #print datalist[ 3 + i*3]
                   if str(self.order) == datalist[ 3 + i*3]:
                       x = float(datalist[4 + i*3])
                       y = float(datalist[5 + i*3])
@@ -69,7 +68,6 @@ if __name__ == "__main__":
     init_node("marker_locator_tcp_client" )
     order = rospy.get_param("~order", 7)
     print "Order is set to: " + str( order )
-    #init_node("marker_locator_tcp_client_" + str(order) )
 
     signal(SIGINT, SIG_DFL)
 
