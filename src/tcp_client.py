@@ -30,12 +30,11 @@ class TCPBridgeClient(asyncore.dispatcher):
 		print self.__class__,"handle_error"
 
 	def handle_read(self):
-#         try:
-              #print self.__class__,"handle_read"
+
               data = self.recv(1024)
               if not data:
                   return
-              #print data
+
               datalist = data.split(',')
               timestamp = datalist[2]
               for i in range( (len(datalist) - 3 )/3):
@@ -43,16 +42,15 @@ class TCPBridgeClient(asyncore.dispatcher):
                   if str(self.order) == datalist[ 3 + i*3]:
                       x = float(datalist[4 + i*3])
                       y = float(datalist[5 + i*3])
+                      
+                      
               """ create and pubish tranmerc """
-              #print "\n", x, y, timestamp
               gps_message = gpgga_tranmerc()
               gps_message.time = timestamp
               gps_message.northing = y/100
               gps_message.easting = x/100
               self.gps_pub.publish(gps_message) 
-              #print gps_message
-#         except:
-#             print "error occured"
+
          
  
 
@@ -68,8 +66,11 @@ port = 9090                             # integer (portnumber)
 host = '192.168.1.50'                      # hostname / IP as string
 
 if __name__ == "__main__":
-    order = 7
-    init_node("marker_locator_tcp_client_" + str(order) )
+    init_node("marker_locator_tcp_client" )
+    order = rospy.get_param("~order", 7)
+    print "Order is set to: " + str( order )
+    #init_node("marker_locator_tcp_client_" + str(order) )
+
     signal(SIGINT, SIG_DFL)
 
     client = TCPBridgeClient(host,port,order)
