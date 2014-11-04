@@ -48,6 +48,9 @@ class TCPBridgeClient(asyncore.dispatcher):
               gps_message.time = timestamp
               gps_message.northing = y/100
               gps_message.easting = x/100
+              gps_message.fix = 4
+              gps_message.sat = 6
+              gps_message.hdop = 1.0
               self.gps_pub.publish(gps_message) 
 
          
