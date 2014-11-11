@@ -32,7 +32,7 @@ class TCPBridgeClient(asyncore.dispatcher):
 		print self.__class__,"handle_error"
 
 	def handle_read(self):
-
+         try:
               data = self.recv(1024)
               if not data:
                   return
@@ -54,7 +54,8 @@ class TCPBridgeClient(asyncore.dispatcher):
               gps_message.sat = np.uint8(6)
               gps_message.hdop = np.double(1.0)
               self.gps_pub.publish(gps_message) 
-
+         except:
+            pass
          
  
 
