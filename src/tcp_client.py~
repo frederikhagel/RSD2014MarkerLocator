@@ -7,8 +7,6 @@ import asyncore, socket, sys, time, rospy
 
 from msgs.msg import gpgga_tranmerc
 
-import numpy as np
-
 class TCPBridgeClient(asyncore.dispatcher):
 	def __init__(self,host,port=9090, order=7):
 		print self.__class__,"__INIT__"
@@ -41,8 +39,8 @@ class TCPBridgeClient(asyncore.dispatcher):
               timestamp = datalist[2]
               for i in range( (len(datalist) - 3 )/3):
                   if str(self.order) == datalist[ 3 + i*3]:
-                      x = np.double(datalist[4 + i*3])
-                      y = np.double(datalist[5 + i*3])
+                      x = float(datalist[4 + i*3])
+                      y = float(datalist[5 + i*3])
                       
                       
               """ create and pubish tranmerc """
@@ -50,9 +48,9 @@ class TCPBridgeClient(asyncore.dispatcher):
               gps_message.time = timestamp
               gps_message.northing = y/100
               gps_message.easting = x/100
-              gps_message.fix = np.uint8(4)
-              gps_message.sat = np.uint8(6)
-              gps_message.hdop = np.double(1.0)
+              gps_message.fix = int(4)
+              gps_message.sat = int(6)
+              gps_message.hdop = 1.0
               self.gps_pub.publish(gps_message) 
 
          
