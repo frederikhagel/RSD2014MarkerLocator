@@ -43,7 +43,7 @@ class TCPBridgeClient(asyncore.dispatcher):
                   if str(self.order) == datalist[ 3 + i*4]:
                       x = np.double(datalist[4 + i*4])
                       y = np.double(datalist[5 + i*4])
-                      
+
                       
               """ create and pubish tranmerc """
               gps_message = gpgga_tranmerc()

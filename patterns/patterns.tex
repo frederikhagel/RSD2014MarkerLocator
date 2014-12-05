@@ -1,0 +1,51 @@
+\documentclass[landscape,a4paper]{article}
+\usepackage[margin=1cm]{geometry}
+\usepackage{tikz}
+\pagestyle{empty}
+
+\begin{document}
+\centering
+\newcommand{\steplength}{30}
+\newcommand{\archlength}{1.6cm}
+\newcommand{\drawarch}[1]{\draw[color=black,fill=black] (2*#1:\archlength) arc(2*#1:2*#1+\steplength:\archlength) 
+	-- (0, 0) -- (2*#1:\archlength); }
+%\newcommand{\drawdot}{\draw[fill=black] (0, 0) circle (0.75mm);}
+\newcommand{\drawdot}{}
+\newcommand{\draworder}[1]{\draw (0, -2.2) node {n = #1};}
+
+
+\renewcommand{\archlength}{10cm}
+\begin{tikzpicture}
+\newcommand\order{5}
+		\begin{scope}
+			% Do calculation
+			\pgfmathsetmacro{\steplength}{180 / \order}%
+			\foreach \n in {0, \steplength, ..., 119}{\drawarch{\n}}
+		\end{scope}
+\end{tikzpicture}
+
+
+\renewcommand{\archlength}{10cm}
+\begin{tikzpicture}
+\newcommand\order{7}
+		\begin{scope}
+			% Do calculation
+			\pgfmathsetmacro{\steplength}{180 / \order}%
+			\foreach \n in {0, \steplength, ..., 149}{\drawarch{\n}}
+		\end{scope}
+\end{tikzpicture}
+
+
+\renewcommand{\archlength}{10cm}
+\begin{tikzpicture}
+\newcommand\order{9}
+		\begin{scope}
+			% Do calculation
+			\pgfmathsetmacro{\steplength}{180 / \order}%
+			\foreach \n in {0, \steplength, ..., 149}{\drawarch{\n}}
+		\end{scope}
+\end{tikzpicture}
+
+
+
+\end{document}
