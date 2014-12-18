@@ -46,6 +46,14 @@
 		\end{scope}
 \end{tikzpicture}
 
-
+\renewcommand{\archlength}{10cm}
+\begin{tikzpicture}
+\newcommand\order{8}
+		\begin{scope}
+			% Do calculation
+			\pgfmathsetmacro{\steplength}{180 / \order}%
+			\foreach \n in {0, \steplength, ..., 149}{\drawarch{\n}}
+		\end{scope}
+\end{tikzpicture}
 
 \end{document}
